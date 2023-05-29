@@ -1,11 +1,6 @@
 <template>
   <div>
-    <base-input
-      v-model="value"
-      v-bind="$attrs"
-      :label="props.label"
-      :name="props.name"
-    />
+    <base-input v-model="value" v-bind="$attrs" :name="props.name" />
     {{ errorMessage }}
   </div>
 </template>
@@ -14,10 +9,6 @@
 import { useField } from 'vee-validate';
 
 const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -25,6 +16,10 @@ const props = defineProps({
   isRequired: {
     type: Boolean,
     required: true,
+  },
+  defaultValue: {
+    type: String,
+    default: '',
   },
 });
 
