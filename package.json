@@ -6,7 +6,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": " prettier --write ./**/**.{js,vue} && eslint --fix",
+    "lint:style": "stylelint ./**/**.{css,scss} --fix --config ./.stylelintrc.js"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
@@ -19,6 +21,8 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.14.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "nuxt": "^3.5.1",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
@@ -31,5 +35,14 @@
   "dependencies": {
     "vee-validate": "^4.9.5",
     "yup": "^1.2.0"
+  },
+  "lint-staged": {
+    "**/*.{js,vue}": ["npm run lint"],
+    "**/*.{css,scss}": ["npm run lint:style"]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
