@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:prettier/recommended',
     '@nuxt/eslint-config',
     'plugin:prettier/recommended',
   ],
@@ -18,4 +19,12 @@ module.exports = {
   globals: {
     $nuxt: true,
   },
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
 };

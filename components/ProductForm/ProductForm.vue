@@ -8,7 +8,13 @@
     />
     <validated-input label="name" name="name" type="email" is-required />
     <validated-input label="email" name="email" type="text" is-required />
-    <validated-input label="price" name="price" type="text" is-required />
+    <validated-input
+      v-input-mask
+      label="price"
+      name="price"
+      type="text"
+      is-required
+    />
   </div>
 </template>
 
