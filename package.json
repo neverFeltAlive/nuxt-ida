@@ -21,11 +21,15 @@
     "eslint-plugin-vue": "^9.14.1",
     "nuxt": "^3.5.1",
     "prettier": "^2.8.8",
+    "sass": "^1.62.1",
     "stylelint": "^15.6.2",
     "stylelint-config-recommended-scss": "^12.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-prettier": "^3.0.0",
-    "stylelint-scss": "^5.0.0",
-    "sass": "^1.62.1"
+    "stylelint-scss": "^5.0.0"
+  },
+  "dependencies": {
+    "vee-validate": "^4.9.5",
+    "yup": "^1.2.0"
   }
 }

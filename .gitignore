@@ -8,6 +8,8 @@ node_modules
 dist
 .DS_Store
 
+.stylelintcache
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
