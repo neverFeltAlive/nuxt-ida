@@ -10,7 +10,7 @@ defineProps({
     required: true,
   },
   modelValue: {
-    type: String,
+    type: [String, undefined],
     required: true,
   },
 });
@@ -19,7 +19,3 @@ const handleInput = (event) => {
   emits('update:modelValue', event.target.value);
 };
 </script>
-
-<style lang="scss" scoped>
-@import 'style';
-</style>

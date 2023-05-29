@@ -1,22 +1,27 @@
 <template>
   <div>
-    <form-input
-      id="test-id"
-      v-model="input"
-      label="test input"
-      name="test-name"
+    <validated-input
+      label="password"
+      name="password"
+      type="password"
+      is-required
     />
+    <validated-input label="name" name="name" type="email" is-required />
+    <validated-input label="email" name="email" type="text" is-required />
   </div>
 </template>
 
 <script setup>
-const input = ref('fadsf');
+import { useForm } from 'vee-validate';
+import * as yup from 'yup';
 
-watchEffect(() => {
-  console.log(input.value);
+const schema = yup.object({
+  email: yup.string().required().email(),
+  name: yup.string().required(),
+  password: yup.string().required().min(8),
 });
 
-watch(input, () => {
-  console.log(input.value);
+useForm({
+  validationSchema: schema,
 });
 </script>
