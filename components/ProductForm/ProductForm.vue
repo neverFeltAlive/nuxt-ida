@@ -1,36 +1,50 @@
 <template>
-  <div>
+  <form @submit.prevent>
     <validated-input
-      label="password"
-      name="password"
-      type="password"
+      label="Название товара"
+      name="productName"
+      type="text"
       is-required
     />
-    <validated-input label="name" name="name" type="email" is-required />
-    <validated-input label="email" name="email" type="text" is-required />
     <validated-input
-      label="price"
-      name="price"
+      label="Ссылка на изображение"
+      name="imageUrl"
       type="text"
-      default-value="0"
+      is-required
+    />
+    <validated-input
+      label="Цена"
+      name="productPrice"
+      type="text"
       mask-type="price"
       is-required
       is-masked
     />
-  </div>
+    <base-button :disabled="!isFormReadyForSubmission">Добавить</base-button>
+  </form>
 </template>
 
 <script setup>
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 
+import BaseButton from '~/components/BaseButton/BaseButton.vue';
+
 const schema = yup.object({
-  email: yup.string().required().email(),
-  name: yup.string().required(),
-  password: yup.string().required().min(8),
+  productName: yup.string().required().label('Название товара'),
+  imageUrl: yup.string().required().url().label('Ссылка на изображение'),
+  productPrice: yup.number().min(1).required().label('Цена'),
 });
 
-useForm({
+const { errors, values } = useForm({
   validationSchema: schema,
 });
+
+const isFormReadyForSubmission = computed(
+  () =>
+    !!values.productPrice &&
+    !!values.imageUrl &&
+    !!values.productName &&
+    !Object.keys(errors.value).length
+);
 </script>
