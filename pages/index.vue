@@ -1,0 +1,3 @@
+<template>
+  <product-form />
+</template>
