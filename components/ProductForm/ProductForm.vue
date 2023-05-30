@@ -12,6 +12,7 @@
       label="price"
       name="price"
       type="text"
+      mask-type="price"
       is-required
       is-masked
     />

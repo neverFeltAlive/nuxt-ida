@@ -1,6 +1,11 @@
 <template>
   <div>
-    <base-input v-model="value" v-bind="$attrs" :name="props.name" />
+    <base-input
+      v-model="value"
+      v-bind="$attrs"
+      :name="name"
+      :model-modifiers="{ [maskType]: true }"
+    />
     {{ errorMessage }}
   </div>
 </template>
@@ -13,11 +18,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  isRequired: {
-    type: Boolean,
-    required: true,
-  },
-  defaultValue: {
+  maskType: {
     type: String,
     default: '',
   },
