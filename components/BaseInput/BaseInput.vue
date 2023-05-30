@@ -1,10 +1,6 @@
 <template>
   <label :for="$attrs.id">{{ label }}</label>
-  <input
-    :value="maskedInput"
-    v-bind="$attrs"
-    @input="$emit('update:modelValue', $event.target.value)"
-  />
+  <input :value="modelValue" v-bind="$attrs" @input="handleInput" />
 </template>
 
 <script setup>
@@ -17,22 +13,22 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  isMasked: {
-    type: Boolean,
-    default: false,
+  modelModifiers: {
+    type: Object,
+    default: () => ({}),
   },
 });
-defineEmits(['update:modelValue']);
+const emits = defineEmits(['update:modelValue']);
 
-const { modelValue } = toRefs(props);
+const { modelModifiers } = toRefs(props);
 
-const maskedInput = computed(() => {
-  const valueToNumber = (value) => +value.trim().replaceAll(/\D/g, '') || '';
+const handleInput = (e) => {
+  let value = e.target.value;
 
-  return props.isMasked
-    ? valueToNumber(modelValue.value || '')
-        .toLocaleString()
-        .replaceAll(',', ' ')
-    : modelValue.value;
-});
+  if (modelModifiers.value.price) {
+    value = maskPriceInput(value);
+  }
+
+  emits('update:modelValue', value);
+};
 </script>
