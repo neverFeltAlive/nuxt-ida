@@ -22,7 +22,13 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  defaultValue: {
+    type: String,
+    default: '',
+  },
 });
 
-const { errorMessage, value } = useField(() => props.name);
+const { errorMessage, value } = useField(() => props.name, null, {
+  initialValue: props.defaultValue,
+});
 </script>
