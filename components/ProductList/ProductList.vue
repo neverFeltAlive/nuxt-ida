@@ -3,9 +3,9 @@
     <product-item
       v-for="product in products"
       :key="product.id"
-      :image="product.img"
-      :name="product.name"
-      :price="product.price"
+      :image="product.imageUrl"
+      :name="product.productName"
+      :price="product.productPrice"
     />
   </div>
 </template>

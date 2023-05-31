@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent>
+  <form @submit.prevent="handleProductSubmit">
     <validated-input
       label="Название товара"
       name="productName"
@@ -29,6 +29,7 @@ import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 
 import BaseButton from '~/components/BaseButton/BaseButton.vue';
+import { useProductsStore } from '~/store/useProductsStore';
 
 const schema = yup.object({
   productName: yup.string().required().label('Название товара'),
@@ -36,9 +37,11 @@ const schema = yup.object({
   productPrice: yup.number().min(1).required().label('Цена'),
 });
 
-const { errors, values } = useForm({
+const { errors, values, handleSubmit, handleReset } = useForm({
   validationSchema: schema,
 });
+
+const { addProduct } = useProductsStore();
 
 const isFormReadyForSubmission = computed(
   () =>
@@ -47,4 +50,11 @@ const isFormReadyForSubmission = computed(
     !!values.productName &&
     !Object.keys(errors.value).length
 );
+
+const handleProductSubmit = handleSubmit((values) => {
+  if (isFormReadyForSubmission) {
+    addProduct(values);
+    handleReset();
+  }
+});
 </script>

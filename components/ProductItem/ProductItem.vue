@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h3>{{ name }}</h3>
-    <p>{{ price }}</p>
+    <h3>Name: {{ name }}</h3>
+    <p>Price: {{ price }}</p>
   </div>
 </template>
 
 <script setup>
-import { number } from 'yup';
-
 defineProps({
   name: {
     type: String,
@@ -18,7 +16,7 @@ defineProps({
     required: true,
   },
   price: {
-    type: number,
+    type: String,
     required: true,
   },
 });
